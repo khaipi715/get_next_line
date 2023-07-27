@@ -6,7 +6,7 @@
 /*   By: lnaulak <lnaulak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 09:18:27 by lnaulak           #+#    #+#             */
-/*   Updated: 2023/07/27 11:38:22 by lnaulak          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:18:34 by lnaulak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,24 @@ char	*get_next_line(int fd)
 
 char	*read_function(int fd, char *str)
 {
-	char	*tmp;
-	int		byte;
+	char	*mal;
+	int		i;
 
-	byte = 1;
-	tmp = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!tmp)
-		return (NULL);
-	while (ft_strchr(str, '\n') == 0 && (byte != 0))
+	i = 1;
+	mal = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	while (ft_nline(str) == 0 && i != 0)
 	{
-		byte = read(fd, tmp, BUFFER_SIZE);
-		if (byte == -1)
+		i = read(fd, mal, BUFFER_SIZE);
+		if (i == -1)
 		{
-			free(tmp);
+			free(mal);
 			free(str);
 			return (NULL);
 		}
-		tmp[byte] = '\0';
-		str = ft_strjoin(str, tmp);
+		mal[i] = '\0';
+		str = ft_strjoin(str, mal);
 	}
-	free(tmp);
+	free(mal);
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lnaulak <lnaulak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:34:01 by lnaulak           #+#    #+#             */
-/*   Updated: 2023/07/27 11:38:17 by lnaulak          ###   ########.fr       */
+/*   Updated: 2023/07/27 12:57:54 by lnaulak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*ft_strchr(char *s, int c)
+int	ft_nline(char *s)
 {
 	int	i;
 
 	i = 0;
 	if (!s)
 		return (0);
-	if (c == '\0')
-		return (&s[ft_strlen(s)]);
+	if (s == (void *) '\0')
+		return (1);
 	while (s[i] != '\0')
 	{
-		if (s[i] == (char) c)
-			return (&s[i]);
+		if (s[i] == '\n')
+			return (1);
 		i++;
 	}
 	return (0);
